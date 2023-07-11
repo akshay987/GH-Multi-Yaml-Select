@@ -1,0 +1,15 @@
+name: Parent Workflow
+
+on:
+  workflow_run:
+    workflows: ["Child Workflow 1", "Child Workflow 2", "Child Workflow 3"]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Steps to execute after any of the child workflows complete
+      - name: Print Child Workflow Status
+        run: echo "Child Workflow Status: ${{ github.event.workflow_run.conclusion }}"

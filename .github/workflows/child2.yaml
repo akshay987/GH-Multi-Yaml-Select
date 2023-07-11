@@ -1,0 +1,13 @@
+name: Child Workflow 2
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 2
+        run: echo "Child Workflow 2 - Step 2"
+
+      # Add more steps/actions as needed
