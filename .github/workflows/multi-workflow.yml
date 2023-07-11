@@ -1,0 +1,27 @@
+name: Multi-Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      workflows:
+        description: 'Workflows to run'
+        required: true
+        default: 'workflow1,workflow2'
+      repository:
+        description: 'Repository to run workflows in'
+        required: true
+        default: ${{ github.repository }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Trigger Child Workflows
+        id: workflow_dispatch
+        uses: peter-evans/workflow-dispatch@v1
+        with:
+          workflow: ${{ github.event.inputs.workflows }}
+          repository: ${{ github.event.inputs.repository }}

@@ -1,0 +1,8 @@
+name: Child Workflow 2
+on:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        run: echo " Workflow 2"
